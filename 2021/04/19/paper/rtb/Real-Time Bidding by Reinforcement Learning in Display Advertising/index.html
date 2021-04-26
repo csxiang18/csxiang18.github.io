@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Real-Time Bidding by Reinforcement Learning in Display Advertising | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="RTB, RL" />
+    
+    <meta name="description" content="Real-Time Bidding by Reinforcement Learning in Display Advertising 很早的一篇用RL来解决advertiser竞价的问题。把advertiser的竞价行为看成是一轮一轮的游戏。在每一轮游戏过程中总共有T次竞价，advertiser的budget的上限为B，每次竞价中opportunity的特征为\(x\). 首先对state的定义为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Real-Time Bidding by Reinforcement Learning in Display Advertising">
+<meta property="og:url" content="http://csxiang18.github.io/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Real-Time Bidding by Reinforcement Learning in Display Advertising 很早的一篇用RL来解决advertiser竞价的问题。把advertiser的竞价行为看成是一轮一轮的游戏。在每一轮游戏过程中总共有T次竞价，advertiser的budget的上限为B，每次竞价中opportunity的特征为\(x\). 首先对state的定义为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://csxiang18.github.io/images/paper/rtb_rl_1.png">
+<meta property="article:published_time" content="2021-04-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-25T09:37:34.872Z">
+<meta property="article:author" content="ChangshengXiang">
+<meta property="article:tag" content="RTB, RL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://csxiang18.github.io/images/paper/rtb_rl_1.png">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%E6%97%85%E6%B8%B8/">旅游</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-paper/rtb/Real-Time Bidding by Reinforcement Learning in Display Advertising" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Real-Time Bidding by Reinforcement Learning in Display Advertising
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="article-date">
+       <time datetime="2021-04-18T16:00:00.000Z" itemprop="datePublished">2021-04-19</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="article-date">
+     <time datetime="2021-04-25T09:37:34.872Z" itemprop="dateModified">2021-04-25</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/RTB-RL/" rel="tag">RTB, RL</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h1 id="real-time-bidding-by-reinforcement-learning-in-display-advertising">Real-Time Bidding by Reinforcement Learning in Display Advertising</h1>
+<p>很早的一篇用RL来解决advertiser竞价的问题。把advertiser的竞价行为看成是一轮一轮的游戏。在每一轮游戏过程中总共有T次竞价，advertiser的budget的上限为B，每次竞价中opportunity的特征为<span class="math inline">\(x\)</span>.</p>
+<p>首先对state的定义为<span class="math inline">\(S = (t, b, x_t)\)</span>，表示当前剩余轮数，剩余budget，和当前的request特征。这时候agent要做的决策就是决定一个价格<span class="math inline">\(a\)</span>，在这篇论文里<span class="math inline">\(a\)</span>是一个整数。另外还有两个量<span class="math inline">\(m(\delta, x)\)</span>和<span class="math inline">\(\theta(x)\)</span>，<span class="math inline">\(m(\delta,x)\)</span>表示和该广告主竞争的其余广告主在特征<span class="math inline">\(x\)</span>下出价<span class="math inline">\(\delta\)</span>的一个概率分布。如果该广告主出价为<span class="math inline">\(a \ge \delta\)</span>，那么在这次竞价中该广告主就会获胜，并且budget会消耗<span class="math inline">\(\delta\)</span>。<span class="math inline">\(\theta(x)\)</span>是该次机会中的CTR。是做为RL中的reward。那么根据以上定义，在这个竞价MDP的过程中，转移概率和奖励函数就可以如下定义： <span class="math display">\[
+\begin{align}
+&amp; \mu(a, (t,b,x_t), (t-1, b-\delta, x_{t-1})) = p_x(x_{t-1})m(\delta, x_t) \\
+&amp; \mu(a, (t,b,x_t), (t-1, b, x_{t-1})) = p_x(x_{t-1})\sum_{\delta=a+1}^\infty m(\delta, x_t) \\
+&amp; r(a, (t,b,x_t), (t-1, b-\delta, x_{t-1})) = \theta(x_t) \\
+&amp; r(a, (t,b,x_t), (t-1, b, x_{t-1})) = 0
+\end{align}
+\]</span> 其中<span class="math inline">\(\delta \in \{0,\cdots, a\}\)</span>.有了转移概率和奖励函数，就用DP的方法去求解value-function <span class="math inline">\(V(t,b,x)\)</span>。在论文里面作者考虑一个更通用的场景，也就是在没有观察到特征<span class="math inline">\(x\)</span>的情况下，求解value-function <span class="math inline">\(V(t,b) = \int V(t,b,x)dx\)</span>。根据bellman方程，当<span class="math inline">\(\gamma=1\)</span>有 <span class="math display">\[
+V^\pi(s) = \sum_{s^{&#39;}}\mu(\pi(s),s, s^{&#39;})(r(\pi(s), s, s^{&#39;}) + V^\pi(s^{&#39;}))
+\]</span> 那么根据上述MDP过程<span class="math inline">\(V(t, b, x)\)</span>可以由如下<span class="math inline">\(V(t,b)\)</span>表示： <span class="math display">\[
+\begin{align}
+V(t,b, x) &amp;= \mathop{\max}_{0 \le a \le b} \Big{\{} \sum_{\delta=0}^a \int m(\delta, x)p_x(x_{t-1}) (\theta(x) + V(t-1, b-\delta, x_{t-1}))dx_{t-1} \\ &amp; + \sum_{\delta=a+1}^\infty \int m(\delta,x)p_x(x_{t-1}) V(t-1, b,x_{t-1})dx_{t-1} \Big{\}}
+\\ &amp;= \mathop{\max}_{0 \le a\le b}\Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) + \sum_{\delta=a+1}^\infty m(\delta, x)V(t-1, b) \Big{\}}  \qquad (1)
+\end{align}
+\]</span> 所以最优的action <span class="math inline">\(a(t, b, x)\)</span>有 <span class="math display">\[
+\begin{align}
+a(t, b, x) &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) \\ &amp;+ \sum_{\delta=a+1}^\infty m(\delta, x)V(t-1, b) \Big{\}}  \qquad (2)
+\end{align}
+\]</span> 其中包含三个量<span class="math inline">\(m(\delta, x), \theta(x), V(t-1, *)\)</span>。首先根据(1)式与<span class="math inline">\(V(t,b) = \int V(t,b,x)dx\)</span>来求解<span class="math inline">\(V(t-1, *)\)</span> <span class="math display">\[
+\begin{align}
+V(t, b) &amp;= \int p(x) \mathop{\max}_{0 \le a\le b}\Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) \\ &amp;+ \sum_{\delta=a+1}^\infty m(\delta, x)V(t-1, b) \Big{\}} dx \\ &amp; = \mathop{\max}_{0 \le a \le b}\Big{\{} \sum_{\delta=0}^a \int p(x) m(\delta, x)\theta(x) dx \\ &amp;+ \sum_{\delta=0}^a V(t-1, b-\delta)\int p(x) m(\delta,x) dx + V(t-1,b) \sum_{\delta=a+1}^\infty \int p(x) m(\delta,x)dx \Big{\}} \\ &amp;= \mathop{\max}_{0 \le a\le b}\Big{\{} \sum_{\delta=0}^a \int p(x) m(\delta, x)\theta(x) dx \\ &amp;+ \sum_{\delta=0}^a V(t-1, b-\delta) m(\delta) + V(t-1, b) \sum_{\delta=a+1}^\infty m(\delta) \Big{\}}
+\end{align}
+\]</span> 第一项<span class="math inline">\(\int p(x) m(\delta, x)\theta(x) dx\)</span>，论文假设有<span class="math inline">\(m(\delta, x) = x\)</span>，即市场上bid price的一个概率分布是和特征<span class="math inline">\(x\)</span>没有关系的。这是之前一篇文章所假设的。所有$p(x) m(, x)(x) dx = m()_{} $ 。所以最终<span class="math inline">\(V(t,b)\)</span>的计算方式为 <span class="math display">\[
+V(t, b) \approx \mathop{\max}_{0 \le a\le b}\Big{\{} \sum_{\delta=0}^a m(\delta)\theta_{\text{avg}} + \sum_{\delta=0}^a V(t-1, b-\delta) m(\delta) + V(t-1, b) \sum_{\delta=a+1}^\infty m(\delta) \Big{\}}
+\]</span> 在计算得到<span class="math inline">\(V(t,b)\)</span>之后，那么对于action而言有(2)式，另外注意到<span class="math inline">\(\sum_{\delta=0} ^\infty m(\delta, x) = 1\)</span>，所以(2)可以化简成 <span class="math display">\[
+\begin{align}
+a(t, b, x) &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) \\ &amp;+ \sum_{\delta=a+1}^\infty m(\delta, x)V(t-1, b) \Big{\}}  \\ &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) \\&amp;+ V(t-1, b) -  \sum_{\delta=0}^a m(\delta, x)V(t-1, b) \Big{\}}
+\end{align}
+\]</span> 注意到<span class="math inline">\(V(t-1,b)\)</span>与a无关，所以 <span class="math display">\[
+\begin{align}
+a(t, b, x)  &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta)) \\ &amp; -  \sum_{\delta=0}^a m(\delta, x)V(t-1, b) \Big{\}} \\ &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a  m(\delta,x)(\theta(x) + V(t-1, b-\delta) - V(t-1, b)) \\ &amp;= \mathop{\text{argmax}}_{0\le a \le b} \Big{\{} \sum_{\delta=0}^a m(\delta, x) g(\delta) \Big{\}}
+\end{align}
+\]</span> 分析一下<span class="math inline">\(g(\delta) = \theta(x) + V(t-1, b-\delta) - V(t-1, b)\)</span>的性质，首先有<span class="math inline">\(V(t-1, b - \delta)\)</span>是关于<span class="math inline">\(\delta\)</span>的一个递减函数，那么<span class="math inline">\(g(\delta)\)</span>也是一个关于<span class="math inline">\(\delta\)</span>的递减函数，所以如果有<span class="math inline">\(g(b) \ge 0\)</span>，那么<span class="math inline">\(a(t,b,x) = b\)</span>。如果<span class="math inline">\(g(b) \le 0\)</span>，因为<span class="math inline">\(g(0) = \theta(x) \ge 0\)</span>，所以一定存在一个数<span class="math inline">\(A\)</span>满足<span class="math inline">\(g(A) \ge 0, g(A+ 1)\le0\)</span>。那么此时就有<span class="math inline">\(a(t, b, x) = A\)</span>。所以完整的算法如下图所示：</p>
+<p><img src="/images/paper/rtb_rl_1.png" alt="bid_flow" style="zoom:40%;" /></p>
+<p>另外作者还讨论了当<span class="math inline">\(m(\delta, x) \neq m(\delta)\)</span>的时候，因为ADX 关于bid price的分布是和<span class="math inline">\(x\)</span>有关的。但是对于一些特定的feature来说可能是无关的，比如说都在同一些segment下面，所以可以根据<span class="math inline">\(x\)</span>的特征来进行一个划分，比如说不同的demo等等. 全集<span class="math inline">\(X = \sqcup_i x_i\)</span>，那么之前 <span class="math display">\[
+\int p(x) m(\delta, x)\theta(x) dx = \sum_i \int_{x_i} p(x_i)m(\delta, x_i)\theta(x_i) dx_i \\ \approx \sum_im_i(\delta) \int_{x_i} p(x_i)\theta(x_i)dx_i = \sum_i m_i(\delta)(\theta_{avg})_i p(x \in x_i)
+\]</span> 另外如果表<span class="math inline">\(V(t, b)\)</span>太大，整体时间复杂度为<span class="math inline">\(O(TB)\)</span>。可能导致时间/空间复杂度太高，论文中提出了可以在小数据集上先计算<span class="math inline">\(V(t,b)\)</span>，然后再用一个参数化的模型用RMSE来进行拟合。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://csxiang18.github.io/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" data-id="cknxzpm0n00071lsz5igxad2n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ChangshengXiang"
+        },
+        "headline": "Real-Time Bidding by Reinforcement Learning in Display Advertising",
+        "image": "http://csxiang18.github.io/images/paper/rtb_rl_1.png",
+        "keywords": "RTB, RL",
+        "genre": "论文",
+        "datePublished": "2021-04-19",
+        "dateCreated": "2021-04-19",
+        "dateModified": "2021-04-25",
+        "url": "http://csxiang18.github.io/2021/04/19/paper/rtb/Real-Time Bidding by Reinforcement Learning in Display Advertising/",
+        "description": "Real-Time Bidding by Reinforcement Learning in Display Advertising
+很早的一篇用RL来解决advertiser竞价的问题。把advertiser的竞价行为看成是一轮一轮的游戏。在每一轮游戏过程中总共有T次竞价，advertiser的budget的上限为B，每次竞价中opportunity的特征为\(x\).
+首先对state的定义为",
+        "wordCount": 557
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="stack-overflow" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2021/04/11/paper/rtb/Optimal%20Real%20Time%20Bidding%20for%20Display%20Advertising/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Optimal Real Time Bidding for Display Advertising</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/paper/rtb_rl_1.png)" alt="Real-Time Bidding by Reinforcement Learning in Display Advertising" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a></p>
+                            <p class="item-title"><a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="title">Real-Time Bidding by Reinforcement Learning in Display Advertising</a></p>
+                            <p class="item-date"><time datetime="2021-04-18T16:00:00.000Z" itemprop="datePublished">2021-04-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/04/11/paper/rtb/Optimal%20Real%20Time%20Bidding%20for%20Display%20Advertising/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/paper/bid_flow_1.png)" alt="Optimal Real Time Bidding for Display Advertising" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a></p>
+                            <p class="item-title"><a href="/2021/04/11/paper/rtb/Optimal%20Real%20Time%20Bidding%20for%20Display%20Advertising/" class="title">Optimal Real Time Bidding for Display Advertising</a></p>
+                            <p class="item-date"><time datetime="2021-04-10T16:00:00.000Z" itemprop="datePublished">2021-04-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/13/travel/Haisenwai/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/travel/haishenwai/haishenwai_plan.png)" alt="海参崴之行" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%97%85%E6%B8%B8/">旅游</a></p>
+                            <p class="item-title"><a href="/2019/09/13/travel/Haisenwai/" class="title">海参崴之行</a></p>
+                            <p class="item-date"><time datetime="2019-09-12T16:00:00.000Z" itemprop="datePublished">2019-09-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%85%E6%B8%B8/">旅游</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RTB/" rel="tag">RTB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RTB-RL/" rel="tag">RTB, RL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E5%8F%82%E5%B4%B4/" rel="tag">海参崴</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/RTB/" style="font-size: 10px;">RTB</a> <a href="/tags/RTB-RL/" style="font-size: 10px;">RTB, RL</a> <a href="/tags/%E6%B5%B7%E5%8F%82%E5%B4%B4/" style="font-size: 10px;">海参崴</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 ChangshengXiang</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://csxiang18.github.io/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML.js"></script>
+
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
