@@ -6,17 +6,26 @@
     
 
     
-    <title>归档: 2019/9 | Hexo</title>
+    <title>Feedback Control of Real-Time Display Advertising | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://csxiang18.github.io/archives/2019/09/index.html">
+    <meta name="keywords" content="RTB, RL" />
+    
+    <meta name="description" content="一篇基于反馈控制系统来控制DSP的竞价策略。解决的问题是需要在一定的budget约束条件下，通过调整我的竞价，达到控制广告主的一些KPI的目的，比如本文里面的eCPC，AWR或者CTR等。 最早的基于request的竞价策略为 \[ b(t) &#x3D; b_0 \frac{\theta_t}{\theta_0} \qquad (1) \] \(\theta_t\)是当前的utility，比如CTR, e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Feedback Control of Real-Time Display Advertising">
+<meta property="og:url" content="http://csxiang18.github.io/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一篇基于反馈控制系统来控制DSP的竞价策略。解决的问题是需要在一定的budget约束条件下，通过调整我的竞价，达到控制广告主的一些KPI的目的，比如本文里面的eCPC，AWR或者CTR等。 最早的基于request的竞价策略为 \[ b(t) &#x3D; b_0 \frac{\theta_t}{\theta_0} \qquad (1) \] \(\theta_t\)是当前的utility，比如CTR, e">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://csxiang18.github.io/images/paper/feedback_1.png">
+<meta property="article:published_time" content="2021-10-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-28T16:25:51.257Z">
 <meta property="article:author" content="ChangshengXiang">
+<meta property="article:tag" content="RTB, RL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://csxiang18.github.io/images/paper/feedback_1.png">
     
 
     
@@ -143,79 +152,188 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>归档: 2019/9
+    <a class="page-title-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-paper/rtb/Feedback Control of Real-Time Display Advertising" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2019" class="archive-year"><i class="icon fa fa-calendar-o"></i>2019</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2019/09/13/travel/Haisenwai/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/travel/haishenwai/haishenwai_plan.png)" alt="海参崴之行" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://csxiang18.github.io/2019/09/13/travel/Haisenwai/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/%E6%97%85%E6%B8%B8/">旅游</a>
-            </div>
-            <div class="date"><time datetime="2019-09-12T16:00:00.000Z" itemprop="datePublished">2019-09-13</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/09/13/travel/Haisenwai/">海参崴之行</a>
+        Feedback Control of Real-Time Display Advertising
         </h1>
     
 
-        <p class="article-excerpt">
-            终于回来补上这篇游记了。这次去海参崴的时间是2019年9月13-2019年9月17日。事前经过各位靠谱的小伙伴谋划，我们的行程安排大致如下图：
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/" class="article-date">
+       <time datetime="2021-10-28T16:00:00.000Z" itemprop="datePublished">2021-10-29</time>
+    </a>
+  </div>
 
-行程计划
 
-去前准备： * 俄罗斯的电话卡（淘宝） * 下载的App: Yandex（打车），Google Translate, Goole Maps * 兑好的卢布，每人1000RMB
-2019-9-13
-早上淡定的去赶飞机了。去程是北京到哈尔滨转机大
-        </p>
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/" class="article-date">
+     <time datetime="2021-10-28T16:25:51.257Z" itemprop="dateModified">2021-10-29</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/RTB-RL/" rel="tag">RTB, RL</a>
     </div>
-</article>
-    
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>一篇基于反馈控制系统来控制DSP的竞价策略。解决的问题是需要在一定的budget约束条件下，通过调整我的竞价，达到控制广告主的一些KPI的目的，比如本文里面的eCPC，AWR或者CTR等。</p>
+<p>最早的基于request的竞价策略为 <span class="math display">\[
+b(t) = b_0 \frac{\theta_t}{\theta_0} \qquad (1)
+\]</span> <span class="math inline">\(\theta_t\)</span>是当前的utility，比如CTR, expected revenue等等。<span class="math inline">\(b_0\)</span>是调整过后的基准竞价，<span class="math inline">\(\theta_0\)</span>是一个在当前target条件下一个平均的utility，比如平均的CTR。</p>
+<p>文章解决的问题是想利用反馈控制来调整我的出价，以机制（1）的竞价方式为基准，达到控制某一些KPI的目的。</p>
+<p><img src="/images/paper/feedback_1.png" alt="bid arch" style="zoom:50%;" /></p>
+<p>其中Bid Calculator就是机制(1)，得到一个bid price <span class="math inline">\(b(t)\)</span>，然后输入到一个新的叫Actuator里面去。Actuator就是文中利用反馈控制信号来条件<span class="math inline">\(b(t)\)</span>得到一个新的<span class="math inline">\(b_a(t)\)</span>。控制机制为 <span class="math display">\[
+b_a(t) = b(t) \exp (\phi(t))
+\]</span> 其中<span class="math inline">\(\phi(t)\)</span>是反馈系统所产生的反馈控制信号。作者也试过用线性模型，如<span class="math inline">\(b_a(t) = b(t)(1 + \phi(t))\)</span>来调整出价，但是效果不好，所以还是用了这种指数形式。</p>
+<p>接下来就是怎么得到这个反馈控制信号了<span class="math inline">\(\phi(t)\)</span>。文章使用了两种控制器，一种是PID控制器，另外一种是水位控制器。具体形式如下，对了提一嘴，控制器的目标是希望控制一个动态系统能够输出一个理想的控制信号的。所以控制器都会带一个<span class="math inline">\(x_r(t)\)</span>，表示那一个时刻控制器想要达到的理想状态。本文里面以eCPC为例。</p>
+<p>如果是PID控制器，首先会计算一个误差项<span class="math inline">\(e(t_k) = x_r(t_k) - x(t_k)\)</span>。那么产生的控制信号<span class="math inline">\(\phi(t)\)</span>就是 <span class="math display">\[
+\phi(t_{k+1}) = \lambda e(t_k) + \lambda_I \sum_{j=1}^k e(t_j) \Delta t_j + \lambda_D \frac{\Delta e(t_k)}{\Delta t_k}
+\]</span> 如果是水位控制器，那么产生的控制信号是 <span class="math display">\[
+\phi(t_{k+1}) = \phi(t_k) + \gamma (x_r(t_k) - x(t_k))
+\]</span> 接下来对于控制器而言，就是怎么设置系统需要达到的理想的eCPC <span class="math inline">\(x_r(t)\)</span>了。在这里，广告主没有设置一个它需要达到的eCPC来作为参考，那么作为DSP而言，一个设置eCPC的方式是使得广告的点击量尽可能的大。可以以此为基准来求出我想要控制的eCPC是多少。假设对于DSP集成的第i个ADX，我的eCPC为<span class="math inline">\(\zeta_i\)</span>。<span class="math inline">\(c_i(\zeta_i)\)</span>是在该ADX在该eCPC下的一个点击数，所以对于DSP而言，理想的eCPC应该满足以下的性质 <span class="math display">\[
+\max_{\zeta_i,\cdots,\zeta_n} \sum_i c_i(\zeta_i) \\
+s.t. \qquad \sum_i c_i(\zeta_i) \zeta_i = B
+\]</span> B是对应的budget。用朗格朗日法以及对<span class="math inline">\(c_i(\zeta_i)\)</span>做一些形式上的假定，我们可以求得，对每个ADX而言，最优的<span class="math inline">\(\zeta_i\)</span>。具体细节可以看论文，这就是我们的reference value。通过得到该reference value，就可以得到对每个ADX而言，我的出价应该是多少。</p>
+
         </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://csxiang18.github.io/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/" data-id="ckvb5sgfk000522ta9l2u9t8o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ChangshengXiang"
+        },
+        "headline": "Feedback Control of Real-Time Display Advertising",
+        "image": "http://csxiang18.github.io/images/paper/feedback_1.png",
+        "keywords": "RTB, RL",
+        "genre": "论文",
+        "datePublished": "2021-10-29",
+        "dateCreated": "2021-10-29",
+        "dateModified": "2021-10-29",
+        "url": "http://csxiang18.github.io/2021/10/29/paper/rtb/Feedback Control of Real-Time Display Advertising/",
+        "description": "一篇基于反馈控制系统来控制DSP的竞价策略。解决的问题是需要在一定的budget约束条件下，通过调整我的竞价，达到控制广告主的一些KPI的目的，比如本文里面的eCPC，AWR或者CTR等。
+最早的基于request的竞价策略为 \[
+b(t) = b_0 \frac{\theta_t}{\theta_0} \qquad (1)
+\] \(\theta_t\)是当前的utility，比如CTR, e",
+        "wordCount": 115
+    }
+</script>
+
+</article>
+
+    <section id="comments">
     
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -277,6 +395,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2021/06/02/paper/rtb/Budget%20Constrained%20Bidding%20by%20Model-free%20Reinforcement%20Learning%20in%20Display%20Advertising/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Budget Constrained Bidding by Model-free Reinforcement Learning in Display Advertising</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -488,11 +619,13 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://csxiang18.github.io/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
