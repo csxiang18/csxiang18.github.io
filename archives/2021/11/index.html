@@ -6,13 +6,13 @@
     
 
     
-    <title>标签: RTB, RL | Hexo</title>
+    <title>归档: 2021/11 | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://csxiang18.github.io/tags/RTB-RL/index.html">
+<meta property="og:url" content="http://csxiang18.github.io/archives/2021/11/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ChangshengXiang">
@@ -143,7 +143,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签: <em>RTB, RL</em>
+    <i class="icon fa fa-archive"></i>归档: 2021/11
     </h1>
 </div>
 
@@ -167,17 +167,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/" class="thumbnail">
+        <a href="/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/paper/feedback_1.png)" alt="Feedback Control of Real-Time Display Advertising" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/paper/rtb_deep_forecast_1.pn)" alt="Deep Lanscape Forecasting for Real-Time Bidding" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://csxiang18.github.io/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://csxiang18.github.io/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/">0</span>
     
 </span>
 
@@ -190,121 +190,22 @@
             <div class="category">
             <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
             </div>
-            <div class="date"><time datetime="2021-10-28T16:00:00.000Z" itemprop="datePublished">2021-10-29</time></div>
+            <div class="date"><time datetime="2021-11-14T04:00:00.000Z" itemprop="datePublished">2021-11-14</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2021/10/29/paper/rtb/Feedback%20Control%20of%20Real-Time%20Display%20Advertising/">Feedback Control of Real-Time Display Advertising</a>
+        <a href="/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/">Deep Lanscape Forecasting for Real-Time Bidding</a>
         </h1>
     
 
         <p class="article-excerpt">
-            一篇基于反馈控制系统来控制DSP的竞价策略。解决的问题是需要在一定的budget约束条件下，通过调整我的竞价，达到控制广告主的一些KPI的目的，比如本文里面的eCPC，AWR或者CTR等。
-最早的基于request的竞价策略为 \[
-b(t) = b_0 \frac{\theta_t}{\theta_0} \qquad (1)
-\] \(\theta_t\)是当前的utility，比如CTR, e
-        </p>
-    </div>
-</article>
-    
+            本文解决的问题是为advertiser预测一个一个竞价流量的价值\(z\)，在二价的场景下面称作market price。这个问题主要有两个难点。
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/06/02/paper/rtb/Budget%20Constrained%20Bidding%20by%20Model-free%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/paper/rtb_rl_2.png)" alt="Budget Constrained Bidding by Model-free Reinforcement Learning in Display Advertising" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://csxiang18.github.io/2021/06/02/paper/rtb/Budget%20Constrained%20Bidding%20by%20Model-free%20Reinforcement%20Learning%20in%20Display%20Advertising/">0</span>
-    
-</span>
+对于在RTB市场fail的bid，只能知道自己的出价\(b\)低于market price \(z\)，这类被称作censored data。
+通常会假设\(z\)是服从于某个假定的分布，但在实际应用中通过不了类似的假设检验
 
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
-            </div>
-            <div class="date"><time datetime="2021-06-01T16:00:00.000Z" itemprop="datePublished">2021-06-02</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/06/02/paper/rtb/Budget%20Constrained%20Bidding%20by%20Model-free%20Reinforcement%20Learning%20in%20Display%20Advertising/">Budget Constrained Bidding by Model-free Reinforcement Learning in Display Advertising</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            ​ DSP/广告主再RTB采取的出价策略通常是在一定的budget限制条件下，得到最优的价值。所以可以形式化表示为 \[
-\max \sum_{i=1,\cdots,N} x_iv_i \\
-s.t. \sum_{i=1}^n x_ic_i \le B
-\] \(v_i\)是当前流量的价值，通常可以用CTR/CVR去衡量。在上一篇RTB的出价策略中，见竞价策略一。我们可以知道，在二价的场景下，最优
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/paper/rtb_rl_1.png)" alt="Real-Time Bidding by Reinforcement Learning in Display Advertising" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://csxiang18.github.io/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
-            </div>
-            <div class="date"><time datetime="2021-04-18T16:00:00.000Z" itemprop="datePublished">2021-04-19</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2021/04/19/paper/rtb/Real-Time%20Bidding%20by%20Reinforcement%20Learning%20in%20Display%20Advertising/">Real-Time Bidding by Reinforcement Learning in Display Advertising</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Real-Time Bidding by Reinforcement Learning in Display Advertising
-很早的一篇用RL来解决advertiser竞价的问题。把advertiser的竞价行为看成是一轮一轮的游戏。在每一轮游戏过程中总共有T次竞价，advertiser的budget的上限为B，每次竞价中opportunity的特征为\(x\).
-首先对state的定义为
+论文作者使用了两种方式
         </p>
     </div>
 </article>
