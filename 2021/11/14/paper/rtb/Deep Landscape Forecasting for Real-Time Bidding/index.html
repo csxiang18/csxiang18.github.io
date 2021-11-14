@@ -19,14 +19,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文解决的问题是为advertiser预测一个一个竞价流量的价值\(z\)，在二价的场景下面称作market price。这个问题主要有两个难点。  对于在RTB市场fail的bid，只能知道自己的出价\(b\)低于market price \(z\)，这类被称作censored data。 通常会假设\(z\)是服从于某个假定的分布，但在实际应用中通过不了类似的假设检验  论文作者使用了两种方式">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.pn">
+<meta property="og:image" content="http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.png">
 <meta property="article:published_time" content="2021-11-14T04:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-14T16:14:22.365Z">
+<meta property="article:modified_time" content="2021-11-14T16:15:36.282Z">
 <meta property="article:author" content="ChangshengXiang">
 <meta property="article:tag" content="RTB">
 <meta property="article:tag" content="Survival Analysis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.pn">
+<meta name="twitter:image" content="http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.png">
     
 
     
@@ -185,7 +185,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/" class="article-date">
-     <time datetime="2021-11-14T16:14:22.365Z" itemprop="dateModified">2021-11-15</time>
+     <time datetime="2021-11-14T16:15:36.282Z" itemprop="dateModified">2021-11-15</time>
   </a>
 </div>
 
@@ -242,7 +242,7 @@ S(b_l) = Pr(z \ge b_l) = Pr(z \notin V_1, z\notin V_2, \cdots, z\notin V_{l-1}) 
 W(b_l) = 1 - \prod_{j\le {l-1}} (1 - h_j)
 \]</span></p>
 <p>整个架构如下图所示：</p>
-<p><img src="/images/paper/rtb_deep_forecast_1.pn" alt="rnn"  /></p>
+<p><img src="/images/paper/rtb_deep_forecast_1.png" alt="rnn"  style="zoom:100%;" /></p>
 <p>另外根据上面定义有 <span class="math display">\[Pr(z\in V_l|\mathbf{x}) = h_l \times S(b_{l-1})\]</span></p>
 <p>有了概率形式表示之后，就可以根据最大似然来训练整个网络模型。损失函数是作者的另外一个创新吧。一个是考虑了PDF，另外一个是考虑了CDF来训练模型。首先我们得到的数据分为两种，一种是赢了这次竞价，所以知道对应的market price <span class="math inline">\(z\)</span>，另外是不知道，只知道我们对应的竞价<span class="math inline">\(b\)</span>，<span class="math inline">\(z \ge b\)</span></p>
 <p>一是如果我们观测到这个bid赢了之后，知道对应的market price，所以第一个损失函数是基于PDF <span class="math display">\[
@@ -259,7 +259,7 @@ L_2 = -\log \prod_{x \in D_{win}} W(b|x) - \log \prod _{x\in D_{loss}} S(b|x)
 
 
 
-    <a data-url="http://csxiang18.github.io/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/" data-id="ckvzfumzu0005exta9dgb5m1n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://csxiang18.github.io/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/" data-id="ckvzg3kp50005bltabhwbgs19" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -330,7 +330,7 @@ L_2 = -\log \prod_{x \in D_{win}} W(b|x) - \log \prod _{x\in D_{loss}} S(b|x)
             "name": "ChangshengXiang"
         },
         "headline": "Deep Lanscape Forecasting for Real-Time Bidding",
-        "image": "http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.pn",
+        "image": "http://csxiang18.github.io/images/paper/rtb_deep_forecast_1.png",
         "keywords": "RTB Survival Analysis",
         "genre": "论文",
         "datePublished": "2021-11-14",
@@ -343,7 +343,7 @@ L_2 = -\log \prod_{x \in D_{win}} W(b|x) - \log \prod _{x\in D_{loss}} S(b|x)
 通常会假设\(z\)是服从于某个假定的分布，但在实际应用中通过不了类似的假设检验
 
 论文作者使用了两种方式",
-        "wordCount": 286
+        "wordCount": 287
     }
 </script>
 
@@ -452,7 +452,7 @@ L_2 = -\log \prod_{x \in D_{win}} W(b|x) - \log \prod _{x\in D_{loss}} S(b|x)
                             <a href="/2021/11/14/paper/rtb/Deep%20Landscape%20Forecasting%20for%20Real-Time%20Bidding/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/paper/rtb_deep_forecast_1.pn)" alt="Deep Lanscape Forecasting for Real-Time Bidding" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/paper/rtb_deep_forecast_1.png)" alt="Deep Lanscape Forecasting for Real-Time Bidding" class="thumbnail-image"></span>
     
     
 </a>
